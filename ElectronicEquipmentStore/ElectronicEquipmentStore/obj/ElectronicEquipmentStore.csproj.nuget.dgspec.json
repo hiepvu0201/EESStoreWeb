@@ -1,29 +1,31 @@
 {
   "format": 1,
   "restore": {
-    "E:\\Web\\ASP.NETcore\\ElectronicEquipmentStore\\ElectronicEquipmentStore\\ElectronicEquipmentStore.csproj": {}
+    "D:\\Tài Liệu Học Tập\\Năm 3\\Web\\Testtin\\EESStoreWeb\\ElectronicEquipmentStore\\ElectronicEquipmentStore\\ElectronicEquipmentStore.csproj": {}
   },
   "projects": {
-    "E:\\Web\\ASP.NETcore\\ElectronicEquipmentStore\\ElectronicEquipmentStore\\ElectronicEquipmentStore.csproj": {
+    "D:\\Tài Liệu Học Tập\\Năm 3\\Web\\Testtin\\EESStoreWeb\\ElectronicEquipmentStore\\ElectronicEquipmentStore\\ElectronicEquipmentStore.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Web\\ASP.NETcore\\ElectronicEquipmentStore\\ElectronicEquipmentStore\\ElectronicEquipmentStore.csproj",
+        "projectUniqueName": "D:\\Tài Liệu Học Tập\\Năm 3\\Web\\Testtin\\EESStoreWeb\\ElectronicEquipmentStore\\ElectronicEquipmentStore\\ElectronicEquipmentStore.csproj",
         "projectName": "ElectronicEquipmentStore",
-        "projectPath": "E:\\Web\\ASP.NETcore\\ElectronicEquipmentStore\\ElectronicEquipmentStore\\ElectronicEquipmentStore.csproj",
-        "packagesPath": "C:\\Users\\Hiep Vu\\.nuget\\packages\\",
-        "outputPath": "E:\\Web\\ASP.NETcore\\ElectronicEquipmentStore\\ElectronicEquipmentStore\\obj\\",
+        "projectPath": "D:\\Tài Liệu Học Tập\\Năm 3\\Web\\Testtin\\EESStoreWeb\\ElectronicEquipmentStore\\ElectronicEquipmentStore\\ElectronicEquipmentStore.csproj",
+        "packagesPath": "C:\\Users\\hieun\\.nuget\\packages\\",
+        "outputPath": "D:\\Tài Liệu Học Tập\\Năm 3\\Web\\Testtin\\EESStoreWeb\\ElectronicEquipmentStore\\ElectronicEquipmentStore\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\Hiep Vu\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\hieun\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 19.1.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\DevExpress 19.1\\Components\\System\\Components\\Packages": {},
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
