@@ -255,7 +255,6 @@ namespace ElectronicEquipmentStore.Models
                        //IP5
                        new Product
                        {
-
                            maSP = "IP5",
                            tenSP = "Iphone 5",
                            hinhAnh = "aaaaa",
@@ -264,7 +263,8 @@ namespace ElectronicEquipmentStore.Models
                            giaGoc = 5000000,
                            trangThai = "Còn hàng",
                            maNSX = "CN",
-                           maNSP = "1"
+                           maNSP = "1",
+                           maDM = "1"
                        },
                         //IP6
                         new Product
@@ -277,7 +277,8 @@ namespace ElectronicEquipmentStore.Models
                             giaKhuyenMai = 6000000,
                             giaGoc = 8000000,
                             trangThai = "Còn hàng",
-                            maNSX = "CN"
+                            maNSX = "CN",
+                            maDM = "1"
                         },
                          new Product
                          {
@@ -289,7 +290,8 @@ namespace ElectronicEquipmentStore.Models
                              giaKhuyenMai = 10000000,
                              giaGoc = 11000000,
                              trangThai = "Còn hàng",
-                             maNSX = "CN"
+                             maNSX = "CN",
+                             maDM="1"
                          },
 
                         //Laptop Asus
@@ -303,7 +305,8 @@ namespace ElectronicEquipmentStore.Models
                             giaKhuyenMai = 25000000,
                             giaGoc = 27000000,
                             trangThai = "Còn hàng",
-                            maNSX = "CN"
+                            maNSX = "CN",
+                            maDM = "1"
                         }
                        //ROG                    
                        );

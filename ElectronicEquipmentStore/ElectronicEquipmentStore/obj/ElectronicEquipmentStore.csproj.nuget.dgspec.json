@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "E:\\Web\\ElectronicEquipmentStore\\ElectronicEquipmentStore\\ElectronicEquipmentStore.csproj": {}
+    "E:\\Web\\ASP.NETcore\\ElectronicEquipmentStore\\ElectronicEquipmentStore\\ElectronicEquipmentStore.csproj": {}
   },
   "projects": {
-    "E:\\Web\\ElectronicEquipmentStore\\ElectronicEquipmentStore\\ElectronicEquipmentStore.csproj": {
+    "E:\\Web\\ASP.NETcore\\ElectronicEquipmentStore\\ElectronicEquipmentStore\\ElectronicEquipmentStore.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Web\\ElectronicEquipmentStore\\ElectronicEquipmentStore\\ElectronicEquipmentStore.csproj",
+        "projectUniqueName": "E:\\Web\\ASP.NETcore\\ElectronicEquipmentStore\\ElectronicEquipmentStore\\ElectronicEquipmentStore.csproj",
         "projectName": "ElectronicEquipmentStore",
-        "projectPath": "E:\\Web\\ElectronicEquipmentStore\\ElectronicEquipmentStore\\ElectronicEquipmentStore.csproj",
+        "projectPath": "E:\\Web\\ASP.NETcore\\ElectronicEquipmentStore\\ElectronicEquipmentStore\\ElectronicEquipmentStore.csproj",
         "packagesPath": "C:\\Users\\Hiep Vu\\.nuget\\packages\\",
-        "outputPath": "E:\\Web\\ElectronicEquipmentStore\\ElectronicEquipmentStore\\obj\\",
+        "outputPath": "E:\\Web\\ASP.NETcore\\ElectronicEquipmentStore\\ElectronicEquipmentStore\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

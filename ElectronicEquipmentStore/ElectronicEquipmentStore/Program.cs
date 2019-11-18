@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using ElectronicEquipmentStore.Data;
@@ -32,6 +31,7 @@ namespace ElectronicEquipmentStore
                     logger.LogError(ex, "An error occurred seeding the DB.");
                 }
             }
+            host.Run();
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>

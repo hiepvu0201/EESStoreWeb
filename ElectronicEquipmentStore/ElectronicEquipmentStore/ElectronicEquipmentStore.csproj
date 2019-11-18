@@ -2,8 +2,15 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.0</TargetFramework>
-    <UserSecretsId>aspnet-ElectronicEquipmentStore-C2A58E29-628B-4A5A-A00A-CF1972DA4A47</UserSecretsId>
+    <UserSecretsId>aspnet-ElectronicEquipmentStore-4170307F-A579-4EA3-9A87-691EED0E1AE3</UserSecretsId>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Migrations\20191115092113_Initial.cs" />
+    <Compile Remove="Migrations\20191115092113_Initial.Designer.cs" />
+    <Compile Remove="Migrations\20191117083834_InitialCreate.cs" />
+    <Compile Remove="Migrations\20191117083834_InitialCreate.Designer.cs" />
+  </ItemGroup>
 
 
   <ItemGroup>
@@ -19,7 +26,8 @@
 
 
   <ItemGroup>
-    <Folder Include="Areas\Admin\Controllers\" />
+    <Folder Include="Controllers\" />
+    <Folder Include="wwwroot\images\ProductImage\" />
   </ItemGroup>
 
 </Project>

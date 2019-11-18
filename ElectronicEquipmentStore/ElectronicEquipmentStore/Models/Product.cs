@@ -51,12 +51,20 @@ namespace ElectronicEquipmentStore.Models
         [Required]
         public string maNSX { get; set; }
 
-        [DisplayName("Mã nhóm sản phẩm")]
+        [DisplayName("Nhóm sản phẩm")]
         [Column(TypeName = "nvarchar(250)")]
-        [Required]
         public string maNSP { get; set; }
 
-        public ProductGroup ProductGroup { get; set; }
-        public Receipt Receipt { get; set; }
+        [ForeignKey("maNSP")]
+        public virtual ProductGroup ProductGroup { get; set; }
+
+        [DisplayName("Danh mục")]
+        [Column(TypeName = "nvarchar(250)")]
+        public string maDM { get; set; }
+
+        [ForeignKey("maDM")]
+        public virtual Category Category { get; set; }
+
+        public virtual Receipt Receipt { get; set; }
     }
 }

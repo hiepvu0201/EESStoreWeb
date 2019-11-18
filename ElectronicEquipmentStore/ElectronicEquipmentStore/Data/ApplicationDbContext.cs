@@ -13,11 +13,12 @@ namespace ElectronicEquipmentStore.Data
             : base(options)
         {
         }
-        public DbSet<ElectronicEquipmentStore.Models.Category> Category { get; set; }
-        public DbSet<ElectronicEquipmentStore.Models.ProductGroup> ProductGroup { get; set; }
-        public DbSet<ElectronicEquipmentStore.Models.Product> Product { get; set; }
-        public DbSet<ElectronicEquipmentStore.Models.Customer> Customer { get; set; }
-        public DbSet<ElectronicEquipmentStore.Models.Receipt> Receipt { get; set; }
-        public DbSet<ElectronicEquipmentStore.Models.PurchaseHistory> PurchaseHistory { get; set; }
+        public DbSet<Category> Category { get; set; }
+        public DbSet<ProductGroup> ProductGroup { get; set; }
+        public DbSet<Product> Product { get; set; }
+        public DbSet<Customer> Customer { get; set; }
+        public DbSet<Receipt> Receipt { get; set; }
+        public DbSet<PurchaseHistory> PurchaseHistory { get; set; }
+        public DbSet<ApplicationUser> ApplicationUser { get; set; }
     }
 }

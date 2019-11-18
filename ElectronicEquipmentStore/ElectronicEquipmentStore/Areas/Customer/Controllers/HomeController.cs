@@ -6,28 +6,27 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using ElectronicEquipmentStore.Models;
+using ElectronicEquipmentStore.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace ElectronicEquipmentStore.Controllers
 {
     [Area("Customer")]
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly ApplicationDbContext _context;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ApplicationDbContext context)
         {
-            _logger = logger;
+            _context = context;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var productList = await _context.Product.Include(m => m.ProductGroup).ToListAsync();
+            return View(productList);
         }
-
-        public IActionResult Privacy()
-        {
-            return View();
-        }
+ 
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
