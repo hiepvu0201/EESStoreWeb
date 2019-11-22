@@ -291,7 +291,7 @@ namespace ElectronicEquipmentStore.Models
                              giaGoc = 11000000,
                              trangThai = "Còn hàng",
                              maNSX = "CN",
-                             maDM="1"
+                             maDM = "1"
                          },
 
                         //Laptop Asus
@@ -306,7 +306,7 @@ namespace ElectronicEquipmentStore.Models
                             giaGoc = 27000000,
                             trangThai = "Còn hàng",
                             maNSX = "CN",
-                            maDM = "1"
+                            maDM="1"
                         }
                        //ROG                    
                        );

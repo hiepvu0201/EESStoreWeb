@@ -26,11 +26,12 @@ namespace ElectronicEquipmentStore.Models
         [Required]
         public int soLuongSpMoiNhom { get; set; }
 
-        [DisplayName("Mã danh mục")]
+        [DisplayName("Danh mục")]
         [Column(TypeName = "nvarchar(250)")]
         [Required]
         public string maDM { get; set; }
 
+        [ForeignKey("maDM")]
         public Category Category { get; set; }
 
         public ICollection<Product> Products { get; set; }

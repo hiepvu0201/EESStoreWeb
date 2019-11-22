@@ -186,18 +186,17 @@ namespace ElectronicEquipmentStore.Migrations
                     maNSP = table.Column<string>(type: "nvarchar(250)", nullable: false),
                     tenNSP = table.Column<string>(type: "nvarchar(250)", nullable: false),
                     soLuongSpMoiNhom = table.Column<int>(type: "int", nullable: false),
-                    maDM = table.Column<string>(type: "nvarchar(250)", nullable: false),
-                    CategorymaDM = table.Column<string>(nullable: true)
+                    maDM = table.Column<string>(type: "nvarchar(250)", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_ProductGroup", x => x.maNSP);
                     table.ForeignKey(
-                        name: "FK_ProductGroup_Category_CategorymaDM",
-                        column: x => x.CategorymaDM,
+                        name: "FK_ProductGroup_Category_maDM",
+                        column: x => x.maDM,
                         principalTable: "Category",
                         principalColumn: "maDM",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -353,9 +352,9 @@ namespace ElectronicEquipmentStore.Migrations
                 column: "maNSP");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ProductGroup_CategorymaDM",
+                name: "IX_ProductGroup_maDM",
                 table: "ProductGroup",
-                column: "CategorymaDM");
+                column: "maDM");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Receipt_CustomermaKH",

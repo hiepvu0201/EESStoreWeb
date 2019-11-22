@@ -37,6 +37,7 @@ namespace ElectronicEquipmentStore.Areas.Admin.Controllers
                 Categories = _context.Category.ToList(),
                 Product = new Product()
             };
+
         }
 
         public async Task<IActionResult> Index(string searchString)
@@ -73,32 +74,33 @@ namespace ElectronicEquipmentStore.Areas.Admin.Controllers
             return View(ProductVM);
         }
 
+        // GET: drop down
+
+
         // POST: Create Action Method
-        [HttpPost,ActionName("")]
+        [HttpPost, ActionName("Create")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> CreatePOST()
         {
-            if(!ModelState.IsValid)
-            {
-                return View(ProductVM);
-            }
-
+            //if (!ModelState.IsValid)
+            //{
+            //    return View(ProductVM);
+            //}
             _context.Product.Add(ProductVM.Product);
-            await _context.SaveChangesAsync();
-             
+
             //Image being saved
             string webRootPath = _hostingEnvironment.WebRootPath;
             var files = HttpContext.Request.Form.Files;
 
             var productsFromDb = _context.Product.Find(ProductVM.Product.maSP);
 
-            if(files.Count!=0)
+            if (files.Count != 0)
             {
                 //Image has been uploaded
-                var uploads = Path.Combine(webRootPath,SD.ImageFolder);
+                var uploads = Path.Combine(webRootPath, SD.ImageFolder);
                 var extension = Path.GetExtension(files[0].FileName);
 
-                using (var filestream = new FileStream(Path.Combine(uploads,ProductVM.Product.maSP+extension),FileMode.Create))
+                using (var filestream = new FileStream(Path.Combine(uploads, ProductVM.Product.maSP + extension), FileMode.Create))
                 {
                     files[0].CopyTo(filestream);
                 }
@@ -107,7 +109,7 @@ namespace ElectronicEquipmentStore.Areas.Admin.Controllers
             else
             {
                 //when user does not upload image
-                var uploads = Path.Combine(webRootPath,SD.ImageFolder+@"\"+SD.DefaultProductImage);
+                var uploads = Path.Combine(webRootPath, SD.ImageFolder + @"\" + SD.DefaultProductImage);
                 System.IO.File.Copy(uploads, webRootPath + @"\" + SD.ImageFolder + @"\" + ProductVM.Product.maSP + ".png");
                 productsFromDb.hinhAnh = @"\" + SD.ImageFolder + @"\" + ProductVM.Product.maSP + ".png";
             }
@@ -124,46 +126,62 @@ namespace ElectronicEquipmentStore.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            var product = await _context.Product.FindAsync(id);
-            if (product == null)
+            ProductVM.Product = await _context.Product.Include(m => m.ProductGroup).Include(m => m.Category).SingleOrDefaultAsync(m => m.maSP == id);
+
+            if (ProductVM.Product == null)
             {
                 return NotFound();
             }
-            return View(product);
+            return View(ProductVM);
         }
 
         // POST: Edit Action Method
-        [HttpPost]
+        [HttpPost, ActionName("Edit")]   
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("maSP,tenSP,hinhAnh,soLuongSP,giaKhuyenMai,giaGoc,trangThai,maNSX,maNSP")] Product product)
+        public async Task<IActionResult> EditPOST(string id)
         {
-            if (id != product.maSP)
+            if(ModelState.IsValid)
             {
-                return NotFound();
-            }
+                string webRootPath = _hostingEnvironment.WebRootPath;
+                var files = HttpContext.Request.Form.Files;
 
-            if (ModelState.IsValid)
-            {
-                try
+                var productFromDb = _context.Product.Where(m => m.maSP == ProductVM.Product.maSP).FirstOrDefault();
+
+                if(files[0].Length>0 && files[0]!=null)
                 {
-                    _context.Update(product);
-                    await _context.SaveChangesAsync();
+                    //if user upload a new image
+                    var uploads = Path.Combine(webRootPath, SD.ImageFolder);
+                    var extension_new = Path.GetExtension(files[0].FileName);
+                    var extension_old = Path.GetExtension(productFromDb.hinhAnh);
+
+                    if(System.IO.File.Exists(Path.Combine(uploads, ProductVM.Product.maSP+extension_old)))
+                    {
+                        System.IO.File.Delete(Path.Combine(uploads, ProductVM.Product.maSP + extension_old));
+                    }
+                    using (var filestream = new FileStream(Path.Combine(uploads, ProductVM.Product.maSP + extension_new), FileMode.Create))
+                    {
+                        files[0].CopyTo(filestream);
+                    }
+                    ProductVM.Product.hinhAnh = @"\" + SD.ImageFolder + @"\" + ProductVM.Product.maSP + extension_new;
                 }
-                catch (DbUpdateConcurrencyException)
+                if(ProductVM.Product.hinhAnh!=null)
                 {
-                    if (!ProductExists(product.maSP))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
+                    productFromDb.hinhAnh = ProductVM.Product.hinhAnh;
                 }
+                productFromDb.tenSP= ProductVM.Product.tenSP;
+                productFromDb.soLuongSP = ProductVM.Product.soLuongSP;
+                productFromDb.giaKhuyenMai = ProductVM.Product.giaKhuyenMai;
+                productFromDb.giaGoc = ProductVM.Product.giaGoc;
+                productFromDb.trangThai = ProductVM.Product.trangThai;
+                productFromDb.maNSX = ProductVM.Product.maNSX;
+                productFromDb.maNSP = ProductVM.Product.maNSP;
+                productFromDb.maDM = ProductVM.Product.maDM;
+                await _context.SaveChangesAsync();
+
                 return RedirectToAction(nameof(Index));
             }
-            return View(product);
-        }
+            return View(ProductVM);
+            }
 
         // GET: Delete Action Method
         public async Task<IActionResult> Delete(string id)

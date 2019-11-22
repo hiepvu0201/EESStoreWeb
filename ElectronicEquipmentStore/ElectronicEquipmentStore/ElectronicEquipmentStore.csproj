@@ -10,6 +10,20 @@
     <Compile Remove="Migrations\20191115092113_Initial.Designer.cs" />
     <Compile Remove="Migrations\20191117083834_InitialCreate.cs" />
     <Compile Remove="Migrations\20191117083834_InitialCreate.Designer.cs" />
+    <Compile Remove="Migrations\20191117090835_InitialCreate.cs" />
+    <Compile Remove="Migrations\20191117090835_InitialCreate.Designer.cs" />
+    <Compile Remove="Migrations\20191119040247_InitialCreate.cs" />
+    <Compile Remove="Migrations\20191119040247_InitialCreate.Designer.cs" />
+    <Compile Remove="Migrations\20191119055705_InitialCreate.cs" />
+    <Compile Remove="Migrations\20191119055705_InitialCreate.Designer.cs" />
+    <Compile Remove="Migrations\20191119061111_InitialCreate.cs" />
+    <Compile Remove="Migrations\20191119061111_InitialCreate.Designer.cs" />
+    <Compile Remove="Migrations\20191120051902_InitialCreate.cs" />
+    <Compile Remove="Migrations\20191120051902_InitialCreate.Designer.cs" />
+    <Compile Remove="Migrations\20191120152941_InitialCreate.cs" />
+    <Compile Remove="Migrations\20191120152941_InitialCreate.Designer.cs" />
+    <Compile Remove="Migrations\20191120153614_InitialCreate.cs" />
+    <Compile Remove="Migrations\20191120153614_InitialCreate.Designer.cs" />
   </ItemGroup>
 
 
@@ -26,7 +40,6 @@
 
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
     <Folder Include="wwwroot\images\ProductImage\" />
   </ItemGroup>
 

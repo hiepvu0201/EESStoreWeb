@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ElectronicEquipmentStore.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20191117090835_InitialCreate")]
+    [Migration("20191121040427_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -120,9 +120,6 @@ namespace ElectronicEquipmentStore.Migrations
                     b.Property<string>("maNSP")
                         .HasColumnType("nvarchar(250)");
 
-                    b.Property<string>("CategorymaDM")
-                        .HasColumnType("nvarchar(250)");
-
                     b.Property<string>("maDM")
                         .IsRequired()
                         .HasColumnType("nvarchar(250)");
@@ -136,7 +133,7 @@ namespace ElectronicEquipmentStore.Migrations
 
                     b.HasKey("maNSP");
 
-                    b.HasIndex("CategorymaDM");
+                    b.HasIndex("maDM");
 
                     b.ToTable("ProductGroup");
                 });
@@ -440,7 +437,9 @@ namespace ElectronicEquipmentStore.Migrations
                 {
                     b.HasOne("ElectronicEquipmentStore.Models.Category", "Category")
                         .WithMany("ProductGroups")
-                        .HasForeignKey("CategorymaDM");
+                        .HasForeignKey("maDM")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("ElectronicEquipmentStore.Models.Receipt", b =>

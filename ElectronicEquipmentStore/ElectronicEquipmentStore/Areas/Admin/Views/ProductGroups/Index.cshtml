@@ -39,7 +39,7 @@
                 @Html.DisplayNameFor(model => model.soLuongSpMoiNhom)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.maDM)
+                @Html.DisplayNameFor(model => model.Category.tenDM)
             </th>
             <th></th>
         </tr>
@@ -58,7 +58,7 @@
                     @Html.DisplayFor(modelItem => item.soLuongSpMoiNhom)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.maDM)
+                    @Html.DisplayFor(modelItem => item.Category.tenDM)
                 </td>
                 <td>
                     <a asp-action="Edit" class=" btn btn-primary" asp-route-id="@item.maNSP">Edit</a>

@@ -27,7 +27,7 @@ namespace ElectronicEquipmentStore.Models
         public int tongSoLuongSP { get; set; }
 
         public ICollection<ProductGroup> ProductGroups { get; set; }
-
         public ICollection<Product> Products { get; set; }
+
     }
 }

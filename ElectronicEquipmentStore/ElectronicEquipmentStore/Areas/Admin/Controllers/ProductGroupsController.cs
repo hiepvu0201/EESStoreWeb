@@ -9,6 +9,7 @@ using ElectronicEquipmentStore.Data;
 using ElectronicEquipmentStore.Models;
 using Microsoft.AspNetCore.Authorization;
 using ElectronicEquipmentStore.Utility;
+using ElectronicEquipmentStore.Models.ViewModel;
 
 namespace ElectronicEquipmentStore.Areas.Admin.Controllers
 {
@@ -18,9 +19,17 @@ namespace ElectronicEquipmentStore.Areas.Admin.Controllers
     {
         private readonly ApplicationDbContext _context;
 
+        [BindProperty]
+        public ProductGroupViewModel ProductGroupVM { get; set; }
         public ProductGroupsController(ApplicationDbContext context)
         {
             _context = context;
+
+            ProductGroupVM = new ProductGroupViewModel()
+            {
+                Categories = _context.Category.ToList(),
+                ProductGroup = new ProductGroup()
+            };
         }
 
         // GET: ProductGroups
@@ -55,7 +64,7 @@ namespace ElectronicEquipmentStore.Areas.Admin.Controllers
         // GET: Create Action Method
         public IActionResult Create()
         {
-            return View();
+            return View(ProductGroupVM);
         }
 
         // POST: Create Action Method
