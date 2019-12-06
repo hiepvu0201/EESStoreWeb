@@ -34,10 +34,12 @@ namespace ElectronicEquipmentStore
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultUI()
                 .AddDefaultTokenProviders();
+
+            services.AddScoped<IDbInitializer, DbInitializer>();
+
             services.AddControllersWithViews();
             services.AddRazorPages();
 
-            services.AddScoped<IDbInitializer,DbInitializer>();
 
             services.AddMvc(option => option.EnableEndpointRouting = false);
 
@@ -69,6 +71,7 @@ namespace ElectronicEquipmentStore
 
             app.UseRouting();
 
+            dbInitializer.Initialize();
 
             app.UseAuthentication();
             app.UseAuthorization();
@@ -82,7 +85,7 @@ namespace ElectronicEquipmentStore
             //});
 
             app.UseSession();
-            dbInitializer.Initialize();
+            
             app.UseMvc(routes =>
             {
                 routes.MapRoute(

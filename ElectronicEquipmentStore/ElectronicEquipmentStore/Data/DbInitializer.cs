@@ -43,7 +43,7 @@ namespace ElectronicEquipmentStore.Data
                 EmailConfirmed=true
             },"Admin123*").GetAwaiter().GetResult();
 
-            IdentityUser user = await _context.Users.Where(u=>u.Email=="admin@gmail.com").FirstOrDefaultAsync();
+            IdentityUser user = await _context.Users.Where(u => u.Email == "admin@gmail.com").FirstOrDefaultAsync();
 
             await _userManager.AddToRoleAsync(user,SD.SuperAdminEndUser);
         }
