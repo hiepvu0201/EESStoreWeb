@@ -24,6 +24,30 @@
     <Compile Remove="Migrations\20191120152941_InitialCreate.Designer.cs" />
     <Compile Remove="Migrations\20191120153614_InitialCreate.cs" />
     <Compile Remove="Migrations\20191120153614_InitialCreate.Designer.cs" />
+    <Compile Remove="Migrations\20191121040427_InitialCreate.cs" />
+    <Compile Remove="Migrations\20191121040427_InitialCreate.Designer.cs" />
+    <Compile Remove="Migrations\20191122075010_InitalCreate.cs" />
+    <Compile Remove="Migrations\20191122075010_InitalCreate.Designer.cs" />
+    <Compile Remove="Migrations\20191122080542_InitialCreate.cs" />
+    <Compile Remove="Migrations\20191122080542_InitialCreate.Designer.cs" />
+    <Compile Remove="Migrations\20191124023203_InitialCreate.cs" />
+    <Compile Remove="Migrations\20191124023203_InitialCreate.Designer.cs" />
+    <Compile Remove="Migrations\20191124030222_Initial.cs" />
+    <Compile Remove="Migrations\20191124030222_Initial.Designer.cs" />
+    <Compile Remove="Migrations\20191125043011_Initial.cs" />
+    <Compile Remove="Migrations\20191125043011_Initial.Designer.cs" />
+    <Compile Remove="Migrations\20191125130324_Initial.cs" />
+    <Compile Remove="Migrations\20191125130324_Initial.Designer.cs" />
+    <Compile Remove="Migrations\20191126033242_Initial.cs" />
+    <Compile Remove="Migrations\20191126033242_Initial.Designer.cs" />
+    <Compile Remove="Migrations\20191126034429_Initial.cs" />
+    <Compile Remove="Migrations\20191126034429_Initial.Designer.cs" />
+    <Compile Remove="Migrations\20191126041853_Initial.cs" />
+    <Compile Remove="Migrations\20191126041853_Initial.Designer.cs" />
+    <Compile Remove="Migrations\20191126155302_Initial.cs" />
+    <Compile Remove="Migrations\20191126155302_Initial.Designer.cs" />
+    <Compile Remove="Migrations\20191126162458_Initial.cs" />
+    <Compile Remove="Migrations\20191126162458_Initial.Designer.cs" />
   </ItemGroup>
 
 
@@ -36,11 +60,6 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.0.0" />
     <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="3.0.0" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.0.0" />
-  </ItemGroup>
-
-
-  <ItemGroup>
-    <Folder Include="wwwroot\images\ProductImage\" />
   </ItemGroup>
 
 </Project>

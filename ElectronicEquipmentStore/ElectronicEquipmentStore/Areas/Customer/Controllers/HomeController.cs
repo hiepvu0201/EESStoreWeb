@@ -8,6 +8,8 @@ using Microsoft.Extensions.Logging;
 using ElectronicEquipmentStore.Models;
 using ElectronicEquipmentStore.Data;
 using Microsoft.EntityFrameworkCore;
+using ElectronicEquipmentStore.Extensions;
+using Microsoft.AspNetCore.Http;
 
 namespace ElectronicEquipmentStore.Controllers
 {
@@ -27,11 +29,40 @@ namespace ElectronicEquipmentStore.Controllers
             return View(productList);
         }
  
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
+        public async Task<IActionResult> Details(string id)
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            var product = await _context.Product.Include(m => m.ProductGroup).Where(m => m.maSP == id).FirstOrDefaultAsync();
+            return View(product);
+        }
+
+        [HttpPost,ActionName("Details")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DetailsPost(string id)
+        {
+            List<string> lstShoppingCart = HttpContext.Session.Get<List<string>>("ssShoppingCart");
+            if(lstShoppingCart==null)
+            {
+                lstShoppingCart = new List<string>();
+            }
+            lstShoppingCart.Add(id);
+            HttpContext.Session.Set("ssShoppingCart",lstShoppingCart);
+            return RedirectToAction("Index","Home",new { area="Customer"});
+        }
+
+        public ActionResult Remove(string id)
+        {
+            List<string> lstShoppingCart = HttpContext.Session.Get<List<string>>("ssShoppingCart");
+            if(lstShoppingCart.Count>0)
+            {
+                if(lstShoppingCart.Contains(id))
+                {
+                    lstShoppingCart.Remove(id);
+                }
+            }
+
+            HttpContext.Session.Set("ssShoppingCart",lstShoppingCart);
+
+            return RedirectToAction(nameof(Index));
         }
     }
 }

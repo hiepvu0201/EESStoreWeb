@@ -16,9 +16,9 @@ namespace ElectronicEquipmentStore.Data
         public DbSet<Category> Category { get; set; }
         public DbSet<ProductGroup> ProductGroup { get; set; }
         public DbSet<Product> Product { get; set; }
-        public DbSet<Customer> Customer { get; set; }
         public DbSet<Receipt> Receipt { get; set; }
-        public DbSet<PurchaseHistory> PurchaseHistory { get; set; }
+
+        public DbSet<ProductsSelected> ProductsSelected { get; set; }
         public DbSet<ApplicationUser> ApplicationUser { get; set; }
     }
 }

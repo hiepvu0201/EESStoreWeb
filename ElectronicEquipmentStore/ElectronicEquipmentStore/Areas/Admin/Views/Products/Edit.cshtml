@@ -62,7 +62,11 @@
                     <label asp-for="Product.trangThai" class="control-label"></label>
                 </div>
                 <div class="col-8">
-                    <input asp-for="Product.trangThai" class="form-control" />
+                    @*<input asp-for="Product.trangThai" class="form-control" />*@
+                    <select asp-for="Product.trangThai" class="form-control">
+                        <option>còn hàng</option>
+                        <option>hết hàng</option>
+                    </select>
                 </div>
                 <span asp-validation-for="Product.trangThai" class="text-danger"></span>
             </div>
@@ -77,12 +81,11 @@
             </div>
             <div class="form-group row">
                 <div class="col-4">
-                    <label asp-for="Product.maNSP" class="control-label"></label>
+                    <label asp-for="ProductGroups"></label>
                 </div>
                 <div class="col-8">
-                    <input asp-for="Product.maNSP" class="form-control" />
+                    <select asp-for="@Model.Product.maNSP" asp-items="Model.ProductGroups.ToSelectListItemProductGroup(Model.Product.maNSP)" class="form-control"></select>
                 </div>
-                <span asp-validation-for="Product.maNSP" class="text-danger"></span>
             </div>
         </div>
         <div class="col-1">
@@ -99,11 +102,3 @@
         <a asp-action="Index" class="btn btn-success">Back to list</a>
     </div>
 </form>
-
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}

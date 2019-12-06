@@ -9,6 +9,5 @@ namespace ElectronicEquipmentStore.Models.ViewModel
     {
         public Product Product { get; set; }
         public IEnumerable<ProductGroup> ProductGroups { get; set; }
-        public IEnumerable<Category> Categories { get; set; }
     }
 }

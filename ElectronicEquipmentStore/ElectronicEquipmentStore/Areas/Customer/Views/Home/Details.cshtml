@@ -1,0 +1,116 @@
+﻿@model ElectronicEquipmentStore.Models.Product
+@using ElectronicEquipmentStore.Extensions
+@using Microsoft.AspNetCore.Http
+
+@inject IHttpContextAccessor HttpContextAccessor
+
+<h2 class="text-info"> Product Details</h2>
+
+<hr />
+<form method="post">
+    <div class="p-4 border rounded row">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="col-8">
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="tenSP" class="control-label"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="tenSP" class="form-control" readonly />
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="soLuongSP" class="control-label"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="soLuongSP" class="form-control" readonly />
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="giaKhuyenMai" class="control-label"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="giaKhuyenMai" class="form-control" readonly />
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="giaGoc" class="control-label"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="giaGoc" class="form-control" readonly />
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="trangThai" class="control-label"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="trangThai" class="form-control" readonly />
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="maNSX" class="control-label"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="maNSX" class="form-control" readonly />
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="ProductGroup" class="control-label"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="ProductGroup.tenNSP" class="form-control" readonly />
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-4">
+                   
+                </div>
+                <div class="col-8">
+                    @{ 
+                        bool isInBag = false;
+                        List<string> lstCart = HttpContextAccessor.HttpContext.Session.Get<List<string>>("ssShoppingCart");
+                        if(lstCart!=null && lstCart.Contains(Model.maSP))
+                        {
+                            isInBag = true;
+
+                        }
+                    }
+
+                    @if (isInBag)
+                    {
+                        <button type="submit" value="Remove From Bag" asp-action="remove" asp-route-id="@Model.maSP" class="btn btn-danger form-control">Remove from Bag</button>
+                    }
+                    else
+                    {
+                        <button type="submit" value="Add to Bag" asp-route-id="@Model.maSP" class="btn btn-primary form-control">Add to Bag</button>
+                    }
+                </div>
+            </div>
+        </div>
+        <div class="col-1">
+
+        </div>
+        <div class="col-3">
+            <img src="@Model.hinhAnh" width="100%" style="border-radius:5px;border: 1px solid #bbb9b9;" />
+            <br />
+            @if(Model.trangThai=="còn hàng")
+            {
+                <img src="~/images/ProductImage/available.png" width="50%" />
+            }
+        </div>
+
+    </div>
+
+    <div class="form-group">
+        <input hidden asp-for="maSP" />
+        <a asp-action="Index" class="btn btn-success">Back to list</a>
+    </div>
+</form>

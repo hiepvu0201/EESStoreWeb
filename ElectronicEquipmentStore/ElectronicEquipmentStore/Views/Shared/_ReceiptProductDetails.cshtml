@@ -1,0 +1,55 @@
+﻿@model List<ElectronicEquipmentStore.Models.Product>
+@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+@if (Model != null)
+{
+    <table class="table table-striped" width="100%">
+        <tr class="table-info">
+            <th style="text-align:center;width:20%"></th>
+            <th style="text-align:center;">
+                <label asp-for="@Model.FirstOrDefault().tenSP"></label>
+            </th>
+            <th style="text-align:center;">
+                <label asp-for="@Model.FirstOrDefault().giaGoc"></label>
+            </th>
+            <th style="text-align:center;">
+                <label asp-for="@Model.FirstOrDefault().giaKhuyenMai"></label>
+            </th>
+            <th style="text-align:center;">
+                <label asp-for="@Model.FirstOrDefault().ProductGroup.tenNSP"></label>
+            </th>
+            <th style="text-align:center;width:20%"></th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr style="padding:50px;">
+                <td>
+                    <a asp-area="Customer" asp-controller="Home" asp-action="Details" asp-route-id="@item.maSP">
+                        <img src="@item.hinhAnh" width="100%" style="margin:auto;display:block; border-radius:5px;border:1px solid #bbb9b9;" />
+                    </a>
+                </td>
+                <td style="text-align:center">
+                    @Html.DisplayFor(c => item.tenSP)
+                </td>
+                <td style="text-align:center">
+                    @Html.DisplayFor(c => item.giaGoc)
+                </td>
+                <td style="text-align:center">
+                    @Html.DisplayFor(c => item.giaKhuyenMai)
+                </td>
+                <td style="text-align:center">
+                    @Html.DisplayFor(c => item.ProductGroup.tenNSP)
+                </td>
+                <td style="text-align:center">
+                    
+                </td>
+            </tr>
+        }
+    </table>
+}
+else
+{
+    <div>No items added to the shopping cart ...</div>
+}

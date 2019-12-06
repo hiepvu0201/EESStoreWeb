@@ -34,7 +34,6 @@ namespace ElectronicEquipmentStore.Areas.Admin.Controllers
             ProductVM = new ProductViewModel()
             {
                 ProductGroups = _context.ProductGroup.ToList(),
-                Categories = _context.Category.ToList(),
                 Product = new Product()
             };
 
@@ -58,14 +57,13 @@ namespace ElectronicEquipmentStore.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            var product = await _context.Product
-                .FirstOrDefaultAsync(m => m.maSP == id);
-            if (product == null)
+            ProductVM.Product = await _context.Product.Include(m => m.ProductGroup).SingleOrDefaultAsync(m => m.maSP == id);
+
+            if (ProductVM.Product == null)
             {
                 return NotFound();
             }
-
-            return View(product);
+            return View(ProductVM);
         }
 
         // GET: Create Action Method
@@ -73,8 +71,6 @@ namespace ElectronicEquipmentStore.Areas.Admin.Controllers
         {
             return View(ProductVM);
         }
-
-        // GET: drop down
 
 
         // POST: Create Action Method
@@ -126,7 +122,7 @@ namespace ElectronicEquipmentStore.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            ProductVM.Product = await _context.Product.Include(m => m.ProductGroup).Include(m => m.Category).SingleOrDefaultAsync(m => m.maSP == id);
+            ProductVM.Product = await _context.Product.Include(m => m.ProductGroup).SingleOrDefaultAsync(m => m.maSP == id);
 
             if (ProductVM.Product == null)
             {
@@ -136,52 +132,52 @@ namespace ElectronicEquipmentStore.Areas.Admin.Controllers
         }
 
         // POST: Edit Action Method
-        [HttpPost, ActionName("Edit")]   
+        [HttpPost, ActionName("Edit")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> EditPOST(string id)
         {
-            if(ModelState.IsValid)
+            //var errors = ModelState.Values.SelectMany(v => v.Errors);
+            //if (!ModelState.IsValid)
+            //{
+            //    return View(ProductVM);
+            //}
+            string webRootPath = _hostingEnvironment.WebRootPath;
+            var files = HttpContext.Request.Form.Files;
+
+            var productFromDb = _context.Product.Where(m => m.maSP == ProductVM.Product.maSP).FirstOrDefault();
+
+            if (files[0].Length > 0 && files[0] != null)
             {
-                string webRootPath = _hostingEnvironment.WebRootPath;
-                var files = HttpContext.Request.Form.Files;
+                var uploads = Path.Combine(webRootPath, SD.ImageFolder);
+                var extension_new = Path.GetExtension(files[0].FileName);
+                var extension_old = Path.GetExtension(productFromDb.hinhAnh);
 
-                var productFromDb = _context.Product.Where(m => m.maSP == ProductVM.Product.maSP).FirstOrDefault();
-
-                if(files[0].Length>0 && files[0]!=null)
+                if (System.IO.File.Exists(Path.Combine(uploads, ProductVM.Product.maSP + extension_old)))
                 {
-                    //if user upload a new image
-                    var uploads = Path.Combine(webRootPath, SD.ImageFolder);
-                    var extension_new = Path.GetExtension(files[0].FileName);
-                    var extension_old = Path.GetExtension(productFromDb.hinhAnh);
-
-                    if(System.IO.File.Exists(Path.Combine(uploads, ProductVM.Product.maSP+extension_old)))
-                    {
-                        System.IO.File.Delete(Path.Combine(uploads, ProductVM.Product.maSP + extension_old));
-                    }
-                    using (var filestream = new FileStream(Path.Combine(uploads, ProductVM.Product.maSP + extension_new), FileMode.Create))
-                    {
-                        files[0].CopyTo(filestream);
-                    }
-                    ProductVM.Product.hinhAnh = @"\" + SD.ImageFolder + @"\" + ProductVM.Product.maSP + extension_new;
+                    System.IO.File.Delete(Path.Combine(uploads, ProductVM.Product.maSP + extension_old));
                 }
-                if(ProductVM.Product.hinhAnh!=null)
+                using (var filestream = new FileStream(Path.Combine(uploads, ProductVM.Product.maSP + extension_new), FileMode.Create))
                 {
-                    productFromDb.hinhAnh = ProductVM.Product.hinhAnh;
+                    files[0].CopyTo(filestream);
                 }
-                productFromDb.tenSP= ProductVM.Product.tenSP;
-                productFromDb.soLuongSP = ProductVM.Product.soLuongSP;
-                productFromDb.giaKhuyenMai = ProductVM.Product.giaKhuyenMai;
-                productFromDb.giaGoc = ProductVM.Product.giaGoc;
-                productFromDb.trangThai = ProductVM.Product.trangThai;
-                productFromDb.maNSX = ProductVM.Product.maNSX;
-                productFromDb.maNSP = ProductVM.Product.maNSP;
-                productFromDb.maDM = ProductVM.Product.maDM;
-                await _context.SaveChangesAsync();
+                ProductVM.Product.hinhAnh = @"\" + SD.ImageFolder + @"\" + ProductVM.Product.maSP + extension_new;
+            }
+            if (ProductVM.Product.hinhAnh != null)
+            {
+                productFromDb.hinhAnh = ProductVM.Product.hinhAnh;
+            }
+            productFromDb.tenSP = ProductVM.Product.tenSP;
+            productFromDb.soLuongSP = ProductVM.Product.soLuongSP;
+            productFromDb.giaKhuyenMai = ProductVM.Product.giaKhuyenMai;
+            productFromDb.giaGoc = ProductVM.Product.giaGoc;
+            productFromDb.trangThai = ProductVM.Product.trangThai;
+            productFromDb.maNSX = ProductVM.Product.maNSX;
+            productFromDb.maNSP = ProductVM.Product.maNSP;
+            await _context.SaveChangesAsync();
 
-                return RedirectToAction(nameof(Index));
-            }
-            return View(ProductVM);
-            }
+            return RedirectToAction(nameof(Index));
+
+        }
 
         // GET: Delete Action Method
         public async Task<IActionResult> Delete(string id)

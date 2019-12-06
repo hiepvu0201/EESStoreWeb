@@ -10,55 +10,22 @@ namespace ElectronicEquipmentStore.Models
 {
     public class Receipt
     {
-        [Key]
-        [DisplayName("Mã hóa đơn")]
-        [Column(TypeName = "nvarchar(250)")]
-        [Required]
-        public string maHD { get; set; }
+        public int Id { get; set; }
 
-        [DisplayName("Mã sản phẩm")]
-        [Column(TypeName = "nvarchar(250)")]
-        [Required]
-        public string maSP { get; set; }
+        [Display(Name="Nhân viên bán hàng")]
+        public string SalePersonID { get; set; }
 
-        [DisplayName("Ngày giờ giao dịch")]
-        [Column(TypeName = "datetime")]
-        [Required]
-        public DateTime ngayGiaoDich { get; set; }
+        [ForeignKey("SalePersonID")]
+        public virtual ApplicationUser SalePerson { get; set; }
 
-        [DisplayName("Số lượng sản phẩm")]
-        [Column(TypeName = "int")]
-        [Required]
-        public int soLuongSP { get; set; }
+        public DateTime ngayMua { get; set; }
 
-        [DisplayName("Đơn giá")]
-        [Column(TypeName = "int")]
-        [Required]
-        public int donGia { get; set; }
-
-        [DisplayName("Thành tiền")]
-        [Column(TypeName = "int")]
-        [Required]
-        public int thanhTieh { get; set; }
-
-        [DisplayName("Tổng tiền")]
-        [Column(TypeName = "int")]
-        [Required]
-        public int tongTien { get; set; }
-
-        [DisplayName("Mã khách hàng")]
-        [Column(TypeName = "nvarchar(250)")]
-        [Required]
-        public string maKH { get; set; }
-
-        [DisplayName("Tên khách hàng")]
-        [Column(TypeName = "nvarchar(250)")]
-        [Required]
         public string tenKH { get; set; }
 
-        public ICollection<Product> Products { get; set; }
+        public string sdtKH { get; set; }
 
-        public Customer Customer { get; set; }
-        public PurchaseHistory PurchaseHistory { get; set; }
+        public string emailKH { get; set; }
+
+        public bool daThanhToan { get; set; }
     }
 }

@@ -36,40 +36,13 @@ namespace ElectronicEquipmentStore.Migrations
                     b.ToTable("Category");
                 });
 
-            modelBuilder.Entity("ElectronicEquipmentStore.Models.Customer", b =>
-                {
-                    b.Property<string>("maKH")
-                        .HasColumnType("nvarchar(250)");
-
-                    b.Property<string>("PurchaseHistorymaPurchaseHistory")
-                        .HasColumnType("nvarchar(250)");
-
-                    b.Property<string>("maGiaoDich")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(250)");
-
-                    b.Property<string>("maThanhVien")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(250)");
-
-                    b.Property<string>("tenKH")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(250)");
-
-                    b.HasKey("maKH");
-
-                    b.HasIndex("PurchaseHistorymaPurchaseHistory");
-
-                    b.ToTable("Customer");
-                });
-
             modelBuilder.Entity("ElectronicEquipmentStore.Models.Product", b =>
                 {
                     b.Property<string>("maSP")
                         .HasColumnType("nvarchar(250)");
 
-                    b.Property<string>("ReceiptmaHD")
-                        .HasColumnType("nvarchar(250)");
+                    b.Property<int?>("ReceiptId")
+                        .HasColumnType("int");
 
                     b.Property<int>("giaGoc")
                         .HasColumnType("int");
@@ -77,14 +50,12 @@ namespace ElectronicEquipmentStore.Migrations
                     b.Property<int>("giaKhuyenMai")
                         .HasColumnType("int");
 
-                    b.Property<byte[]>("hinhAnh")
+                    b.Property<string>("hinhAnh")
                         .IsRequired()
-                        .HasColumnType("image");
-
-                    b.Property<string>("maDM")
                         .HasColumnType("nvarchar(250)");
 
                     b.Property<string>("maNSP")
+                        .IsRequired()
                         .HasColumnType("nvarchar(250)");
 
                     b.Property<string>("maNSX")
@@ -104,9 +75,7 @@ namespace ElectronicEquipmentStore.Migrations
 
                     b.HasKey("maSP");
 
-                    b.HasIndex("ReceiptmaHD");
-
-                    b.HasIndex("maDM");
+                    b.HasIndex("ReceiptId");
 
                     b.HasIndex("maNSP");
 
@@ -136,63 +105,56 @@ namespace ElectronicEquipmentStore.Migrations
                     b.ToTable("ProductGroup");
                 });
 
-            modelBuilder.Entity("ElectronicEquipmentStore.Models.PurchaseHistory", b =>
+            modelBuilder.Entity("ElectronicEquipmentStore.Models.ProductsSelected", b =>
                 {
-                    b.Property<string>("maPurchaseHistory")
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("ProductId")
                         .HasColumnType("nvarchar(250)");
 
-                    b.Property<string>("maHD")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(250)");
+                    b.Property<int>("ReceiptId")
+                        .HasColumnType("int");
 
-                    b.HasKey("maPurchaseHistory");
+                    b.HasKey("Id");
 
-                    b.ToTable("PurchaseHistory");
+                    b.HasIndex("ProductId");
+
+                    b.HasIndex("ReceiptId");
+
+                    b.ToTable("ProductsSelected");
                 });
 
             modelBuilder.Entity("ElectronicEquipmentStore.Models.Receipt", b =>
                 {
-                    b.Property<string>("maHD")
-                        .HasColumnType("nvarchar(250)");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("CustomermaKH")
-                        .HasColumnType("nvarchar(250)");
+                    b.Property<string>("SalePersonID")
+                        .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("PurchaseHistorymaPurchaseHistory")
-                        .HasColumnType("nvarchar(250)");
+                    b.Property<bool>("daThanhToan")
+                        .HasColumnType("bit");
 
-                    b.Property<int>("donGia")
-                        .HasColumnType("int");
+                    b.Property<string>("emailKH")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("maKH")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(250)");
+                    b.Property<DateTime>("ngayMua")
+                        .HasColumnType("datetime2");
 
-                    b.Property<string>("maSP")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(250)");
-
-                    b.Property<DateTime>("ngayGiaoDich")
-                        .HasColumnType("datetime");
-
-                    b.Property<int>("soLuongSP")
-                        .HasColumnType("int");
+                    b.Property<string>("sdtKH")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("tenKH")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(250)");
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("thanhTieh")
-                        .HasColumnType("int");
+                    b.HasKey("Id");
 
-                    b.Property<int>("tongTien")
-                        .HasColumnType("int");
-
-                    b.HasKey("maHD");
-
-                    b.HasIndex("CustomermaKH");
-
-                    b.HasIndex("PurchaseHistorymaPurchaseHistory");
+                    b.HasIndex("SalePersonID");
 
                     b.ToTable("Receipt");
                 });
@@ -409,26 +371,17 @@ namespace ElectronicEquipmentStore.Migrations
                     b.HasDiscriminator().HasValue("ApplicationUser");
                 });
 
-            modelBuilder.Entity("ElectronicEquipmentStore.Models.Customer", b =>
-                {
-                    b.HasOne("ElectronicEquipmentStore.Models.PurchaseHistory", "PurchaseHistory")
-                        .WithMany()
-                        .HasForeignKey("PurchaseHistorymaPurchaseHistory");
-                });
-
             modelBuilder.Entity("ElectronicEquipmentStore.Models.Product", b =>
                 {
                     b.HasOne("ElectronicEquipmentStore.Models.Receipt", "Receipt")
-                        .WithMany("Products")
-                        .HasForeignKey("ReceiptmaHD");
-
-                    b.HasOne("ElectronicEquipmentStore.Models.Category", "Category")
-                        .WithMany("Products")
-                        .HasForeignKey("maDM");
+                        .WithMany()
+                        .HasForeignKey("ReceiptId");
 
                     b.HasOne("ElectronicEquipmentStore.Models.ProductGroup", "ProductGroup")
                         .WithMany("Products")
-                        .HasForeignKey("maNSP");
+                        .HasForeignKey("maNSP")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("ElectronicEquipmentStore.Models.ProductGroup", b =>
@@ -440,15 +393,24 @@ namespace ElectronicEquipmentStore.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("ElectronicEquipmentStore.Models.ProductsSelected", b =>
+                {
+                    b.HasOne("ElectronicEquipmentStore.Models.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductId");
+
+                    b.HasOne("ElectronicEquipmentStore.Models.Receipt", "Receipt")
+                        .WithMany()
+                        .HasForeignKey("ReceiptId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("ElectronicEquipmentStore.Models.Receipt", b =>
                 {
-                    b.HasOne("ElectronicEquipmentStore.Models.Customer", "Customer")
-                        .WithMany("Receipts")
-                        .HasForeignKey("CustomermaKH");
-
-                    b.HasOne("ElectronicEquipmentStore.Models.PurchaseHistory", "PurchaseHistory")
-                        .WithMany("Receipts")
-                        .HasForeignKey("PurchaseHistorymaPurchaseHistory");
+                    b.HasOne("ElectronicEquipmentStore.Models.ApplicationUser", "SalePerson")
+                        .WithMany()
+                        .HasForeignKey("SalePersonID");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

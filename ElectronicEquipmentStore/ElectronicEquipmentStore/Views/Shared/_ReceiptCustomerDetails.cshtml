@@ -1,0 +1,43 @@
+﻿@model ElectronicEquipmentStore.Models.Receipt
+
+<h4 class="text-success">Receipt Details</h4>
+
+<div style="height:100px; background-color: aliceblue" class="container border">
+    <div class="col-12">
+        <div class="row" style="padding-top:10px;">
+            <div class="col-2">
+                Tên khách hàng
+            </div>
+            <div class="col-3">
+                <input asp-for="@Model.tenKH" readonly class="form-control" />
+            </div>
+            <div class="col-2">
+
+            </div>
+            <div class="col-2">
+                Email
+            </div>
+            <div class="col-3">
+                <input asp-for="@Model.emailKH" readonly class="form-control" />
+            </div>
+        </div>
+        <div class="row" style="padding-top:10px;">
+            <div class="col-2">
+                Số điện thoại
+            </div>
+            <div class="col-3">
+                <input asp-for="@Model.sdtKH" readonly class="form-control" />
+            </div>
+            <div class="col-2">
+
+            </div>
+            <div class="col-2">
+                Ngày mua hàng
+            </div>
+            <div class="col-3">
+                <input asp-for="@Model.ngayMua" readonly class="form-control" />
+            </div>
+        </div>
+    </div>
+    
+</div>

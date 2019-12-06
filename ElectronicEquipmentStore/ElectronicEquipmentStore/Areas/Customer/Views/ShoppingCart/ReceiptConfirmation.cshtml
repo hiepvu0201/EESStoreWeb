@@ -1,0 +1,21 @@
+﻿@model ElectronicEquipmentStore.Models.ViewModel.ShoppingCartViewModel
+
+@{
+    ViewData["Title"] = "ReceiptConfirmation";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br />
+<h2 class="text-info">Xác nhận hóa đơn</h2>
+
+<div class="form-text">
+    Hóa đơn của bạn đang chờ được xử lý...
+</div>
+<br />
+
+<partial name="~/Views/Shared/_ReceiptCustomerDetails.cshtml" model="Model.Receipt" />
+<br />
+
+<partial name="~/Views/Shared/_ReceiptProductDetails.cshtml" model="Model.Products" />
+
+<a asp-area="Customer" asp-controller="Home" asp-action="Index" class="btn btn-success">Back to Products</a>

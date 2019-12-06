@@ -1,0 +1,79 @@
+﻿@model ElectronicEquipmentStore.Models.ViewModel.ReceiptDetailsViewModel
+@using ElectronicEquipmentStore.Extensions
+@using ElectronicEquipmentStore.Utility
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>Xác nhận xóa</h2>
+<hr />
+<form asp-action="Delete" method="post" enctype="multipart/form-data">
+    <div class="p-4 border rounded row">
+        <input type="hidden" asp-for="Receipt.Id" />
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="col-8">
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Receipt.tenKH" class="control-label"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Receipt.tenKH" class="form-control" />
+                </div>
+                <span asp-validation-for="Receipt.tenKH" class="text-danger"></span>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Receipt.emailKH" class="control-label"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Receipt.emailKH" class="form-control" />
+                </div>
+                <span asp-validation-for="Receipt.emailKH" class="text-danger"></span>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Receipt.sdtKH" class="control-label"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Receipt.sdtKH" class="form-control" />
+                </div>
+                <span asp-validation-for="Receipt.sdtKH" class="text-danger"></span>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Receipt.SalePerson" class="control-label"></label>
+                </div>
+                <div class="col-8">
+                    @if (User.IsInRole(SD.AdminEndUser))
+                    {
+                        <input asp-for="@Model.Receipt.SalePerson.Name" readonly class="form-control" />
+                        <input asp-for="@Model.Receipt.SalePersonID" hidden />
+                    }
+                    else
+                    {
+                        <select asp-for="@Model.Receipt.SalePersonID" asp-items="Model.SalePerson.ToSelectListItemString(Model.Receipt.SalePersonID)" class="form-control"></select>
+                    }
+                </div>
+
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Receipt.daThanhToan"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Receipt.daThanhToan" class="form-control" />
+                </div>
+            </div>
+        </div>
+        <div class="col-6">
+
+        </div>
+
+    </div>
+
+    <div class="form-group">
+        <input type="submit" value="Update" class="btn btn-primary" />
+        <a asp-action="Index" class="btn btn-success">Back to list</a>
+    </div>
+</form>

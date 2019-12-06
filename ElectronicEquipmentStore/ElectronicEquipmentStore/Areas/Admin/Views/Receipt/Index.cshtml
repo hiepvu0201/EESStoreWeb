@@ -1,0 +1,126 @@
+﻿@model ElectronicEquipmentStore.Models.ViewModel.ReceiptViewModel
+
+    <form method="get">
+        <br /><br />
+        <h2 class="text-info">Danh sách hóa đơn</h2>
+        <br />
+        <div style="height:150px;background-color:aliceblue" class="container">
+            <div class="col-12">
+                <div class="row" style="padding-top:10px;">
+                    <div class="col-2">
+                        Tên khách hàng
+                    </div>
+                    <div class="col-3">
+                        @Html.Editor("searchName", new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                    <div class="col-2">
+
+                    </div>
+                    <div class="col-2">
+                        Email
+                    </div>
+                    <div class="col-3">
+                        @Html.Editor("searchEmail", new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                </div>
+                <div class="row" style="padding-top:10px;">
+                    <div class="col-2">
+                        Số điện thoại
+                    </div>
+                    <div class="col-3">
+                        @Html.Editor("searchPhone", new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                    <div class="col-2">
+
+                    </div>
+                    <div class="col-2">
+                        Ngày mua hàng
+                    </div>
+                    <div class="col-3">
+                        @Html.Editor("searchDate", new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                </div>
+                <div class="row" style="padding-top:10px;">
+                    <div class="col-2">
+
+                    </div>
+                    <div class="col-3">
+
+                    </div>
+                    <div class="col-2">
+
+                    </div>
+                    <div class="col-2">
+
+                    </div>
+                    <div class="col-3">
+                        <button type="submit" name="submit" value="Search" class="btn btn-primary form-control">
+                            <i class="fas fa-search"></i> Tìm kiếm
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <br /><br />
+
+        <div>
+            <table class="table table-striped border">
+                <tr class="table-info">
+                    <th>
+                        @Html.DisplayNameFor(m => m.Receipts.FirstOrDefault().SalePerson.Name)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(m => m.Receipts.FirstOrDefault().ngayMua)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(m => m.Receipts.FirstOrDefault().tenKH)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(m => m.Receipts.FirstOrDefault().sdtKH)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(m => m.Receipts.FirstOrDefault().emailKH)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(m => m.Receipts.FirstOrDefault().daThanhToan)
+                    </th>
+                    <th></th>
+                    <th></th>
+                </tr>
+                @foreach (var item in Model.Receipts)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(m => item.SalePerson.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(m => item.ngayMua)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(m => item.tenKH)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(m => item.sdtKH)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(m => item.emailKH)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(m => item.daThanhToan)
+                        </td>
+                        <td>
+                            <a asp-action="Edit" class=" btn btn-primary" asp-route-id="@item.Id">Edit</a>
+                            <a asp-action="Details" class=" btn btn-info" asp-route-id="@item.Id">Details</a>
+                            <a asp-action="Delete" class=" btn btn-danger" asp-route-id="@item.Id">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </table>
+        </div>
+
+        <div page-model="@Model.PagingInfo" page-action="Index" page-classes-enabled="true"
+             page-class="btn border" page-class-normal="btn btn-default active"
+             page-class-selected="btn btn-primary active" class="btn-group m-1"></div>
+
+    </form>

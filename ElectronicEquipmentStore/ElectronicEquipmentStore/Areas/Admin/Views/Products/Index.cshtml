@@ -54,10 +54,6 @@
             <th>
                 @Html.DisplayNameFor(model => model.ProductGroup.tenNSP)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Category.tenDM)
-
-            </th>
             <th></th>
         </tr>
     </thead>
@@ -88,9 +84,6 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.ProductGroup.tenNSP)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Category.tenDM)
             </td>
             <td>
                 <a asp-action="Edit" class=" btn btn-primary" asp-route-id="@item.maSP">Edit</a>

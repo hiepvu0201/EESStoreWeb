@@ -20,6 +20,7 @@ namespace ElectronicEquipmentStore.Extensions
                        Selected = item.GetPropertyValue("maDM").Equals(selectedValue)
                    };
         }
+
         public static IEnumerable<SelectListItem> ToSelectListItemProductGroup<T>(this IEnumerable<T> items, string selectedValue)
         {
             return from item in items
@@ -30,5 +31,22 @@ namespace ElectronicEquipmentStore.Extensions
                        Selected = item.GetPropertyValue("maNSP").Equals(selectedValue)
                    };
         }
+
+        public static IEnumerable<SelectListItem> ToSelectListItemString<T>(this IEnumerable<T> items, string selectedValue)
+        {
+            if(selectedValue==null)
+            {
+                selectedValue = "";
+            }
+
+            return from item in items
+                   select new SelectListItem
+                   {
+                       Text = item.GetPropertyValue("Name"),
+                       Value = item.GetPropertyValue("Id"),
+                       Selected = item.GetPropertyValue("Id").Equals(selectedValue.ToString())
+                   };
+        }
+
     }
 }

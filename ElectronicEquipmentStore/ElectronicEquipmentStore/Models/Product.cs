@@ -22,7 +22,7 @@ namespace ElectronicEquipmentStore.Models
         public string tenSP { get; set; }
 
         [DisplayName("Hình ảnh")]
-        [Column(TypeName = "image")]
+        [Column(TypeName = "nvarchar(250)")]
         [Required]
         public string hinhAnh { get; set; }
 
@@ -53,17 +53,11 @@ namespace ElectronicEquipmentStore.Models
 
         [DisplayName("Nhóm sản phẩm")]
         [Column(TypeName = "nvarchar(250)")]
+        [Required]
         public string maNSP { get; set; }
 
         [ForeignKey("maNSP")]
         public virtual ProductGroup ProductGroup { get; set; }
-
-        [DisplayName("Danh mục")]
-        [Column(TypeName = "nvarchar(250)")]
-        public string maDM { get; set; }
-
-        [ForeignKey("maDM")]
-        public virtual Category Category { get; set; }
 
         public virtual Receipt Receipt { get; set; }
     }

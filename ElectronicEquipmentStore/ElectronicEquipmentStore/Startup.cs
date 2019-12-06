@@ -37,11 +37,19 @@ namespace ElectronicEquipmentStore
             services.AddControllersWithViews();
             services.AddRazorPages();
 
+            services.AddScoped<IDbInitializer,DbInitializer>();
+
             services.AddMvc(option => option.EnableEndpointRouting = false);
+
+            services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromMinutes(30);
+                options.Cookie.HttpOnly = true;
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IDbInitializer dbInitializer)
         {
             if (env.IsDevelopment())
             {
@@ -55,9 +63,12 @@ namespace ElectronicEquipmentStore
                 app.UseHsts();
             }
             app.UseHttpsRedirection();
+
+            //Allow to access wwwroot folder
             app.UseStaticFiles();
 
             app.UseRouting();
+
 
             app.UseAuthentication();
             app.UseAuthorization();
@@ -70,6 +81,8 @@ namespace ElectronicEquipmentStore
             //    endpoints.MapRazorPages();
             //});
 
+            app.UseSession();
+            dbInitializer.Initialize();
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
