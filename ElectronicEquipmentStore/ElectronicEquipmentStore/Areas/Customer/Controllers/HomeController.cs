@@ -23,10 +23,14 @@ namespace ElectronicEquipmentStore.Controllers
             _context = context;
         }
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchString)
         {
-            var productList = await _context.Product.Include(m => m.ProductGroup).ToListAsync();
-            return View(productList);
+            var products = from m in _context.Product select m;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                products = products.Where(s => s.tenSP.Contains(searchString));
+            }
+            return View(await products.ToListAsync());
         }
  
         public async Task<IActionResult> Details(string id)

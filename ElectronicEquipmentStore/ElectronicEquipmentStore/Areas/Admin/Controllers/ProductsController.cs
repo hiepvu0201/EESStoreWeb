@@ -39,7 +39,7 @@ namespace ElectronicEquipmentStore.Areas.Admin.Controllers
 
         }
 
-        public async Task<IActionResult> Index(string searchString)
+        public async Task<IActionResult> Index(string searchString =null)
         {
             var products = from m in _context.Product select m;
             if (!String.IsNullOrEmpty(searchString))
