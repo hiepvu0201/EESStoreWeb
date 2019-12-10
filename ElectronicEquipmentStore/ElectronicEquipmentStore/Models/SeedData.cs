@@ -165,17 +165,6 @@ namespace ElectronicEquipmentStore.Models
                     // DB has been seeded   
                 }
                 context.SaveChanges();
-               
-                if (!context.Receipt.Any())
-                {
-                    context.AddRange(
-                    new Receipt
-                    {
-                        
-                    }
-                     );
-                }
-                context.SaveChanges();
             }
         }
     }

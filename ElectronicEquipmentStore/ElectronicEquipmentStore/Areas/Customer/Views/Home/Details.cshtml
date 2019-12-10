@@ -74,10 +74,10 @@
                    
                 </div>
                 <div class="col-8">
-                    @{ 
+                    @{
                         bool isInBag = false;
                         List<string> lstCart = HttpContextAccessor.HttpContext.Session.Get<List<string>>("ssShoppingCart");
-                        if(lstCart!=null && lstCart.Contains(Model.maSP))
+                        if (lstCart != null && lstCart.Contains(Model.maSP))
                         {
                             isInBag = true;
 
@@ -90,7 +90,14 @@
                     }
                     else
                     {
-                        <button type="submit" value="Add to Bag" asp-route-id="@Model.maSP" class="btn btn-primary form-control">Add to Bag</button>
+                        @if (Model.trangThai == "còn hàng")
+                        {
+                            <button type="submit" value="Add to Bag" asp-route-id="@Model.maSP" class="btn btn-primary form-control">Add to Bag</button>
+                        }
+                        else
+                        {
+                            <button class="btn btn-danger form-control" disabled>Out of stock</button>
+                        }
                     }
                 </div>
             </div>
