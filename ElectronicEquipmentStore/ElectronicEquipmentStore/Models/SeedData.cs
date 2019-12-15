@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ElectronicEquipmentStore.Models
 {
-    public static class SeedData
+    public static class SeedData //This class for seeding database
     {
         public static void Initialize(IServiceProvider serviceProvider)
         {

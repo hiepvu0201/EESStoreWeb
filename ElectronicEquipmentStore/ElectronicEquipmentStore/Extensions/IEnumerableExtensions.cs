@@ -10,6 +10,7 @@ namespace ElectronicEquipmentStore.Extensions
 {
     public static class IEnumerableExtensions
     {
+        //This for dropdown category
         public static IEnumerable<SelectListItem> ToSelectListItemCategory<T>(this IEnumerable<T> items, string selectedValue)
         {
             return from item in items
@@ -21,6 +22,7 @@ namespace ElectronicEquipmentStore.Extensions
                    };
         }
 
+        //This for dropdown productgroup
         public static IEnumerable<SelectListItem> ToSelectListItemProductGroup<T>(this IEnumerable<T> items, string selectedValue)
         {
             return from item in items
@@ -32,6 +34,7 @@ namespace ElectronicEquipmentStore.Extensions
                    };
         }
 
+        //For dropdown which table have value=Id and get Name
         public static IEnumerable<SelectListItem> ToSelectListItemString<T>(this IEnumerable<T> items, string selectedValue)
         {
             if(selectedValue==null)

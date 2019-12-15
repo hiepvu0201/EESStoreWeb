@@ -16,6 +16,8 @@ namespace ElectronicEquipmentStore
     {
         public static void Main(string[] args)
         {
+            // Cause we have the search form, we need to put it in try catch to 
+            //prevent bug when initial the form
             var host = CreateHostBuilder(args).Build();
             using (var scope = host.Services.CreateScope())
             {

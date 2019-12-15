@@ -8389,11 +8389,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\Web\\ElectronicEquipmentStore\\ElectronicEquipmentStore\\ElectronicEquipmentStore.csproj",
+      "projectUniqueName": "E:\\Web\\17110138_VuHoangHiep_17110136_VoMinhHieu\\ElectronicEquipmentStore\\ElectronicEquipmentStore\\ElectronicEquipmentStore.csproj",
       "projectName": "ElectronicEquipmentStore",
-      "projectPath": "E:\\Web\\ElectronicEquipmentStore\\ElectronicEquipmentStore\\ElectronicEquipmentStore.csproj",
+      "projectPath": "E:\\Web\\17110138_VuHoangHiep_17110136_VoMinhHieu\\ElectronicEquipmentStore\\ElectronicEquipmentStore\\ElectronicEquipmentStore.csproj",
       "packagesPath": "C:\\Users\\Hiep Vu\\.nuget\\packages\\",
-      "outputPath": "E:\\Web\\ElectronicEquipmentStore\\ElectronicEquipmentStore\\obj\\",
+      "outputPath": "E:\\Web\\17110138_VuHoangHiep_17110136_VoMinhHieu\\ElectronicEquipmentStore\\ElectronicEquipmentStore\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

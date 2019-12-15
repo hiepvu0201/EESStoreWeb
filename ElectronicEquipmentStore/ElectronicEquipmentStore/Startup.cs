@@ -35,6 +35,9 @@ namespace ElectronicEquipmentStore
                 .AddDefaultUI()
                 .AddDefaultTokenProviders();
 
+
+            //This for seeding superadmin .When user wanna use this web, they need 1 default superadmin account because
+            //only superadmin can create new account
             services.AddScoped<IDbInitializer, DbInitializer>();
 
             services.AddControllersWithViews();
@@ -43,6 +46,8 @@ namespace ElectronicEquipmentStore
 
             services.AddMvc(option => option.EnableEndpointRouting = false);
 
+
+            //This side for shopping cart using session
             services.AddSession(options =>
             {
                 options.IdleTimeout = TimeSpan.FromMinutes(30);
@@ -71,7 +76,10 @@ namespace ElectronicEquipmentStore
 
             app.UseRouting();
 
+            //This side for seeding superadmin
             dbInitializer.Initialize();
+
+            //authentication
 
             app.UseAuthentication();
             app.UseAuthorization();
@@ -84,6 +92,7 @@ namespace ElectronicEquipmentStore
             //    endpoints.MapRazorPages();
             //});
 
+            //Session for shopping cart
             app.UseSession();
             
             app.UseMvc(routes =>
